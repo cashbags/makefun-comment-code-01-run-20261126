@@ -29,6 +29,10 @@ LINE = "The database column is named temp_final_v2_REAL. It holds the salaries. 
 
 
 def main() -> int:
+    # The gate allows 1 to 200 characters. Refuse to emit anything outside
+    # it rather than hand the grader an invalid entry.
+    if not 1 <= len(LINE) <= 200:
+        raise SystemExit("entry line outside the 1-200 character gate")
     path = sys.argv[1] if len(sys.argv) > 1 else "/output/entry.txt"
     with open(path, "w", encoding="utf-8", newline="") as f:
         f.write(LINE)
